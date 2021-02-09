@@ -1,0 +1,11 @@
+.message .message-row .message-content {
+  border-radius: 7px 14px 14px 7px;
+}
+
+.message-right .message-row .message-content {
+  border-radius: 14px 7px 7px 14px;
+}
+
+.message-content {
+  padding: 0.75rem 1rem;
+}

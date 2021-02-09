@@ -5,65 +5,63 @@
       <div class="chat-header border-bottom py-4 py-lg-6 px-lg-8">
         <div class="container-xxl">
           <div class="row align-items-center">
-            <div class="row align-items-center">
-              <!-- Close chat(mobile) -->
-              <div class="col-3 d-xl-none">
-                <ul class="list-inline mb-0">
-                  <li class="list-inline-item">
-                    <a class="text-muted px-0" href="#" data-chat="open">
-                      <i class="icon-md fe-chevron-left"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
+            <!-- Close chat(mobile) -->
+            <div class="col-3 d-xl-none">
+              <ul class="list-inline mb-0">
+                <li class="list-inline-item">
+                  <a class="text-muted px-0" href="#" data-chat="open">
+                    <i class="icon-md fe-chevron-left"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
 
-              <!-- Chat photo -->
-              <div class="col-6 col-xl-6">
-                <div class="media text-center text-xl-left">
-                  <div class="avatar avatar-sm avatar-online d-none d-lg-inline-block mr-5">
-                    <img src="assets/images/avatars/10.jpg" class="avatar-img" alt="">
-                  </div>
-                  <div class="media-body align-self-center text-truncate">
-                    <h6 class="text-truncate mb-n1">Anna Bridges</h6>
-                    <span class="badge badge-dot badge-success d-inline-block d-xl-none mr-1"></span>
-                    <small class="text-muted">Online</small>
-                  </div>
+            <!-- Chat photo -->
+            <div class="col-6 col-xl-6">
+              <div class="media text-center text-xl-left" v-if="room">
+                <div class="avatar avatar-sm avatar-online d-none d-lg-inline-block mr-5">
+                  <img :src="room.avatar" class="avatar-img" alt="">
+                </div>
+                <div class="media-body align-self-center text-truncate">
+                  <h6 class="text-trunctate mb-n1">{{ room.name }}</h6>
+                  <span class="badge badge-dot badge-success d-inline-block d-xl-none mr-1"></span>
+                  <small class="text-muted">Online</small>
                 </div>
               </div>
+            </div>
 
-              <!-- Chat toolbar -->
-              <div class="col-3 col-xl-6 text-right">
-                <ul class="nav justify-content-end">
-                  <li class="nav-item list-inline-item d-none d-xl-block mr-3">
-                    <a class="nav-link text-muted px-3" data-toggle="collapse" data-target="#chat-2-search" href="#" title="Search this chat">
-                      <i class="icon-md fe-search"></i>
-                    </a>
-                  </li>
-                  <li class="nav-item list-inline-item d-none d-xl-block mr-0">
-                    <a class="nav-link text-muted px-3" href="#" data-chat-sidebar-toggle="#chat-2-info" title="Details">
+            <!-- Chat toolbar -->
+            <div class="col-3 col-xl-6 text-right">
+              <ul class="nav justify-content-end">
+                <li class="nav-item list-inline-item d-none d-xl-block mr-3">
+                  <a class="nav-link text-muted px-3" data-toggle="collapse" data-target="#chat-2-search" href="#" title="Search this chat">
+                    <font-awesome-icon class="icon-md" :icon="['far', 'search']" />
+                  </a>
+                </li>
+                <li class="nav-item list-inline-item d-none d-xl-block mr-0">
+                  <a class="nav-link text-muted px-3" href="#" data-chat-sidebar-toggle="#chat-2-info" title="Details">
+                    <font-awesome-icon class="icon-md" :icon="['far', 'ellipsis-v']" />
+                  </a>
+                </li>
+
+                <!-- Mobile nav -->
+                <li class="nav-item list-inline-item d-block d-xl-none">
+                  <div class="dropdown">
+                    <a class="nav-link text-muted px-0" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="icon-md fe-more-vertical"></i>
                     </a>
-                  </li>
-
-                  <!-- Mobile nav -->
-                  <li class="nav-item list-inline-item d-block d-xl-none">
-                    <div class="dropdown">
-                      <a class="nav-link text-muted px-0" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="icon-md fe-more-vertical"></i>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item d-flex align-items-center" data-toggle="collapse" data-target="#chat-2-search" href="#">
+                        Search <span class="ml-auto pl-5 fe-search"></span>
                       </a>
-                      <div class="dropdown-menu">
-                        <a class="dropdown-item d-flex align-items-center" data-toggle="collapse" data-target="#chat-2-search" href="#">
-                          Search <span class="ml-auto pl-5 fe-search"></span>
-                        </a>
-                        <a class="dropdown-item d-flex align-items-center" href="#" data-chat-sidebar-toggle="#chat-2-info">
-                          Chat Info <span class="ml-auto pl-5 fe-more-horizontal"></span>
-                        </a>
-                      </div>
+                      <a class="dropdown-item d-flex align-items-center" href="#" data-chat-sidebar-toggle="#chat-2-info">
+                        Chat Info <span class="ml-auto pl-5 fe-more-horizontal"></span>
+                      </a>
                     </div>
-                  </li>
-                  <!-- Mobile nav -->
-                </ul>
-              </div>
+                  </div>
+                </li>
+                <!-- Mobile nav -->
+              </ul>
             </div>
           </div>
         </div>
@@ -71,56 +69,50 @@
       <!-- Chat: Header -->
 
       <!-- Chat: Content-->
-      <div class="chat-content px-lg-8">
-        <div class="container-xxl py-6 py-lg-10" v-for="(message, index) in messages" :key="index">
-
-          <!-- Message -->
-          <div class="message">
-            <!-- Avatar -->
-            <a class="avatar avatar-sm mr-4 mr-lg-5" href="#">
-              <img class="avatar-img" src="assets/images/avatars/10.jpg" alt="">
-            </a>
-            <!-- Message: body -->
-            <div class="message-body">
-              <!-- Message: row -->
-              <div class="message-row">
-                <div class="d-flex align-items-center">
-                  <!-- Message: content -->
-                  <div class="message-content bg-light">
-                    <h6 class="mb-2">Anna Bridges</h6>
-                    <div>{{ message.content }}</div>
-                    <div class="mt-1">
-                      <small class="opacity-65">8 mins ago</small>
+      <div class="chat-content px-lg-8" ref="messages">
+        <div class="container-xxl py-6 py-lg-10" v-if="messages">
+          <div v-for="(message, index) in messages" :key="index">
+            <!-- Message -->
+            <div class="message mt-2" v-if="user.id !== message.userId">
+              <!-- Message: body -->
+              <div class="message-body">
+                <!-- Message: row -->
+                <div class="message-row">
+                  <div class="d-flex align-items-center">
+                    <!-- Message: content -->
+                    <div class="message-content bg-light">
+                      <div>{{ message.content }}</div>
                     </div>
+                    <!-- Message: content -->
                   </div>
-                  <!-- Message: content -->
-                  <!-- Message: dropdown -->
-                  <div class="dropdown">
-                    <a class="text-muted opacity-60 ml-3" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fe-more-vertical"></i>
-                    </a>
-                    <div class="dropdown-menu">
-                      <a class="dropdown-item d-flex align-items-center" href="#">
-                        Edit <span class="ml-auto fe-edit-3"></span>
-                      </a>
-                      <a class="dropdown-item d-flex align-items-center" href="#">
-                        Share <span class="ml-auto fe-share-2"></span>
-                      </a>
-                      <a class="dropdown-item d-flex align-items-center" href="#">
-                        Delete <span class="ml-auto fe-trash-2"></span>
-                      </a>
-                    </div>
-                  </div>
-                  <!-- Message: dropdown -->
                 </div>
+                <!-- Message: row -->
               </div>
-              <!-- Message: row -->
+              <!-- Message: Body -->
             </div>
-            <!-- Message: Body -->
+            <!-- Message -->
+
+            <div class="message message-right mt-2" v-else>
+              <!-- Message: body -->
+              <div class="message-body">
+                <!-- Message: row -->
+                <div class="message-row">
+                  <div class="d-flex align-items-center justify-content-end">
+                    <!-- Message: content -->
+                    <div class="message-content bg-primary text-white">
+                      <div>{{ message.content }}</div>
+                    </div>
+                    <!-- Message: content -->
+                  </div>
+                </div>
+                <!-- Message: row -->
+              </div>
+              <!-- Message: body -->
+            </div>
           </div>
           <!-- Message -->
-
         </div>
+
         <!-- Scroll to end -->
         <div class="end-of-chat"></div>
       </div>
@@ -134,7 +126,7 @@
               <div class="col">
                 <div class="input-group">
                   <!-- Textarea -->
-                  <textarea id="chat-id-2-input" v-model="message" class="form-control bg-transparent border-0" placeholder="Type your message..." rows="1" data-emoji-input="" data-autosize="true" style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 46px;">
+                  <textarea id="chat-id-2-input" v-model="message" @keydown.enter.exact.prevent="sendMessage" class="form-control bg-transparent border-0" placeholder="Type your message..." rows="1" data-emoji-input="" style="overflow: hidden; resize: none; height: 46px;">
                   </textarea>
                   <!-- Emoji button -->
                   <div class="input-group-append">
@@ -160,7 +152,7 @@
               <!-- Submit button -->
               <div class="col-auto">
                 <button class="btn btn-ico btn-primary rounded-circle" type="submit">
-                  <span class="fe-send"></span>
+                  <font-awesome-icon :icon="['far', 'arrow-up']" />
                 </button>
               </div>
             </div>
@@ -174,34 +166,66 @@
 </template>
 
 <script>
-import { io } from 'socket.io-client';
+import RoomService from '@/services/RoomService';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { mapGetters } from 'vuex';
 
 export default {
+  props: ['id'],
   data() {
     return {
+      room: null,
       message: '',
-      messages: [],
-      socket: io('https://dev.bahu.com'),
+      messages: null,
+      user: this.$store.state.user,
     };
+  },
+  components: {
+    FontAwesomeIcon,
   },
   methods: {
     sendMessage(e) {
       e.preventDefault();
 
-      this.socket.emit('NewMessage', {
-        roomId: '60147086747aaf42fdbe0180',
+      this.getSocket.emit('NewMessage', {
+        roomId: this.room.id,
         content: this.message,
+        kind: 'text',
       });
       this.message = '';
     },
+    scrollMessages() {
+      const container = this.$refs.messages;
+      if (container) {
+        container.scrollTop = container.scrollHeight;
+      }
+    },
+  },
+  computed: {
+    ...mapGetters(['getSocket']),
+  },
+  async created() {
+    const response = await RoomService.getRoom(this.id);
+    this.room = response.data;
+
+    const response2 = await RoomService.getMessages(this.id);
+    this.messages = response2.data.reverse();
   },
   mounted() {
-    const { token } = this.$store.state.user.data;
-    this.socket.emit('identify', token);
+    this.scrollMessages();
 
-    this.socket.on('NewMessage', (message) => {
-      this.messages = [...this.messages, message];
+    this.getSocket.on('NewMessage', (message) => {
+      if (message.roomId === this.room.id) {
+        this.messages = [...this.messages, message];
+      }
     });
+
+    this.getSocket.on('connect', () => {
+      this.getSocket.emit('identify', this.user.token);
+    });
+  },
+  updated() {
+    this.scrollMessages();
   },
 };
 </script>
