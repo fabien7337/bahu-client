@@ -30,6 +30,9 @@ export default createStore({
   modules: {
   },
   getters: {
+    getCurrentUser(state) {
+      return state.user;
+    },
     getSocket(state) {
       return state.socket;
     },

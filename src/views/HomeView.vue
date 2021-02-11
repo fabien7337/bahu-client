@@ -1,17 +1,17 @@
 <template>
   <div class="sidebar">
-    <Rooms />
+    <RoomList />
   </div>
   <div class="main main-visible">
   </div>
 </template>
 
 <script>
-import Rooms from '@/components/Rooms.vue';
+import RoomList from '@/components/room/RoomList.vue';
 
 export default {
   components: {
-    Rooms,
+    RoomList,
   },
 };
 </script>

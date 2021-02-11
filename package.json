@@ -9,11 +9,14 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fortawesome/pro-light-svg-icons": "^5.15.2",
     "@fortawesome/pro-regular-svg-icons": "^5.15.2",
     "@fortawesome/vue-fontawesome": "^3.0.0-3",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "moment": "^2.29.1",
     "socket.io-client": "^3.1.0",
+    "ulid": "^2.3.0",
     "vue": "^3.0.0",
     "vue-router": "^4.0.3",
     "vuex": "^4.0.0"
