@@ -13,6 +13,9 @@ import {
   faUser,
   faLayerGroup,
   faCog,
+  faPaperclip,
+  faTimes,
+  faFile,
 } from '@fortawesome/pro-light-svg-icons';
 import io from 'socket.io-client';
 import { createApp } from 'vue';
@@ -24,6 +27,6 @@ import store from './store';
 const socket = io('https://dev.bahu.com');
 store.dispatch('assignSocket', socket);
 
-library.add(faArrowUp, faSearch, faEllipsisV, faCheck, faClock, faEdit, faComments, faUserFriends, faUser, faLayerGroup, faCog);
+library.add(faArrowUp, faSearch, faEllipsisV, faCheck, faClock, faEdit, faComments, faUserFriends, faUser, faLayerGroup, faCog, faPaperclip, faTimes, faFile);
 
 createApp(App).use(store).use(router).mount('#app');

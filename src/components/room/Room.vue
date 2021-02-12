@@ -1,5 +1,5 @@
 <template>
-  <div class="chat">
+  <div class="chat dropzone-form-js">
     <div class="chat-body">
       <!-- Chat: Header -->
       <div class="chat-header border-bottom py-4 py-lg-6 px-lg-8">
@@ -70,6 +70,12 @@
 
       <MessageList :members="members" :messages="messages" />
 
+      <div class="chat-files hide-scrollbar px-lg-8">
+        <div class="container-xxl">
+          <div class="dropzone-previews-js form-row py-4"></div>
+        </div>
+      </div>
+
       <ChatInput :roomId="roomId" />
     </div>
   </div>
@@ -90,7 +96,7 @@ export default {
     MessageList,
   },
   computed: {
-    ...mapGetters(['getSocket']),
+    ...mapGetters(['getCurrentUser', 'getSocket']),
   },
   data() {
     return {
@@ -110,14 +116,21 @@ export default {
     this.messages = res2.data.reverse();
 
     this.getSocket.on('NewMessage', (message) => {
+      console.log(message);
       if (message.roomId === this.roomId) {
-        this.messages = [...this.messages, message];
+        if (message.kind === 'text') {
+          this.messages = [...this.messages, message];
+        }
+        if (message.kind === 'files') {
+          const message2 = message;
+          message2.content = 'TODO: DISPLAY FILES';
+          this.messages = [...this.messages, message2];
+        }
       }
     });
 
     this.getSocket.on('receivedUserTyping', (data) => {
-      /* const usernames = data.usernames.filter((username) => username !== this.getCurrentUser.username); */
-      const { usernames } = data;
+      const usernames = data.usernames.filter((username) => username !== this.getCurrentUser.username);
       if (usernames.length === 1) {
         this.roomStatus = `${usernames[0]} is typing<span class="typing-dots"><span>.</span><span>.</span><span>.</span></span>`;
       } else if (usernames.length >= 2) {

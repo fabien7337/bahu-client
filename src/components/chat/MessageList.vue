@@ -1,6 +1,6 @@
 <template>
   <div class="chat-content px-lg-8" ref="messages">
-    <div class="container-xxl py-6 py-lg-10" v-if="messages">
+    <div class="container-xxl py-3" v-if="messages">
       <div v-for="(message, index) in messages" :key="index">
         <!-- Message -->
         <div class="message mt-2" v-if="user.id !== message.userId">
@@ -15,7 +15,14 @@
                 <!-- Message: content -->
                 <div class="message-content bg-light">
                   <h6 class="mb-2" v-if="getmembersLength > 2">{{ getmembers[message.userId]['username'] }}</h6>
-                  <div>{{ message.content }}</div>
+                  <div v-if="message.kind === 'text'">{{ message.content }}</div>
+                  <div v-if="message.kind === 'files'">
+                    <div class="form-row py-3">
+                      <div v-for="(file, index) in message.files" :key="index" class="col">
+                        <img class="img-fluid rounded" :src="file.url" data-action="zoom" alt="{{ file.name }}" style="max-height: 400px;">
+                      </div>
+                    </div>
+                  </div>
                   <div class="mt-1">
                     <small class="opacity-65">{{ formatTime(message.createdAt) }}</small>
                   </div>
@@ -37,7 +44,14 @@
               <div class="d-flex align-items-center justify-content-end">
                 <!-- Message: content -->
                 <div class="message-content bg-primary text-white">
-                  <div>{{ message.content }}</div>
+                  <div v-if="message.kind === 'text'">{{ message.content }}</div>
+                  <div v-if="message.kind === 'files'">
+                    <div class="form-row py-3">
+                      <div v-for="(file, index) in message.files" :key="index" class="col">
+                        <img class="img-fluid rounded" :src="file.url" data-action="zoom" alt="{{ file.name }}" style="max-height: 400px;">
+                      </div>
+                    </div>
+                  </div>
                   <div class="mt-1">
                     <small class="opacity-65">{{ formatTime(message.createdAt) }}</small>
                     <font-awesome-icon :icon="['fal', 'check']" class="ml-3" v-if="message.createdAt"/>
