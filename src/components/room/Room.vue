@@ -116,7 +116,6 @@ export default {
     this.messages = res2.data.reverse();
 
     this.getSocket.on('NewMessage', (message) => {
-      console.log(message);
       if (message.roomId === this.roomId) {
         if (message.kind === 'text') {
           this.messages = [...this.messages, message];

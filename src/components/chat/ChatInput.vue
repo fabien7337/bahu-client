@@ -144,11 +144,6 @@ export default {
       previewsContainer.innerHTML = '';
     },
   },
-  watch: {
-    message() {
-      console.log('Watch Message');
-    },
-  },
   created() {
     window.addEventListener('beforeunload', this.sendUserNotTyping);
   },
@@ -183,7 +178,6 @@ export default {
     });
     this.dropzone.on('success', (file, response) => {
       this.fileIds.push(response);
-      console.log(this.fileIds);
     });
   },
 };
