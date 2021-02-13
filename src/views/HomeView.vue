@@ -1,9 +1,10 @@
 <template>
   <Navigation />
-  <div class="sidebar">
+  <div class="sidebar d-block">
     <RoomList />
   </div>
-  <div class="main main-visible">
+  <div class="main main-visible d-none d-sm-block">
+    TODO: Select a room?
   </div>
 </template>
 

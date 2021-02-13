@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faArrowUp,
@@ -16,6 +17,7 @@ import {
   faPaperclip,
   faTimes,
   faFile,
+  faChevronLeft,
 } from '@fortawesome/pro-light-svg-icons';
 import io from 'socket.io-client';
 import { createApp } from 'vue';
@@ -27,6 +29,20 @@ import store from './store';
 const socket = io('https://dev.bahu.com');
 store.dispatch('assignSocket', socket);
 
-library.add(faArrowUp, faSearch, faEllipsisV, faCheck, faClock, faEdit, faComments, faUserFriends, faUser, faLayerGroup, faCog, faPaperclip, faTimes, faFile);
+/** Axios Response Intercept */
+axios.interceptors.response.use(
+  (res) => res,
+  (err) => {
+    if (err.response.status === 401) {
+      localStorage.removeItem('user');
+      router.push({
+        name: 'Login',
+        params: { message: 'Session has expired, please login again' },
+      });
+    }
+  },
+);
+
+library.add(faArrowUp, faSearch, faEllipsisV, faCheck, faClock, faEdit, faComments, faUserFriends, faUser, faLayerGroup, faCog, faPaperclip, faTimes, faFile, faChevronLeft);
 
 createApp(App).use(store).use(router).mount('#app');

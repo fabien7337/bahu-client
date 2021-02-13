@@ -9,9 +9,9 @@
             <div class="col-3 d-xl-none">
               <ul class="list-inline mb-0">
                 <li class="list-inline-item">
-                  <a class="text-muted px-0" href="#" data-chat="open">
-                    <i class="icon-md fe-chevron-left"></i>
-                  </a>
+                  <router-link :to="{ name: 'Home' }" class="text-muted px-0" data-chat="open">
+                    <font-awesome-icon class="icon-md" :icon="['fal', 'chevron-left']" />
+                  </router-link>
                 </li>
               </ul>
             </div>
@@ -48,7 +48,7 @@
                 <li class="nav-item list-inline-item d-block d-xl-none">
                   <div class="dropdown">
                     <a class="nav-link text-muted px-0" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="icon-md fe-more-vertical"></i>
+                      <font-awesome-icon class="icon-md" :icon="['far', 'ellipsis-v']" />
                     </a>
                     <div class="dropdown-menu">
                       <a class="dropdown-item d-flex align-items-center" data-toggle="collapse" data-target="#chat-2-search" href="#">

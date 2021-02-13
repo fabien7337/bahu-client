@@ -1,7 +1,7 @@
 <template>
   <div class="navigation navbar navbar-light justify-content-center py-xl-7">
     <!-- Brand -->
-    <router-link :to="{ name: 'Home' }" class="d-none d-xl-block mb-6">
+    <router-link :to="{ name: 'Home' }" class="none d-xl-block mb-6">
       <img src="/logo.png" height="46" />
     </router-link>
 
