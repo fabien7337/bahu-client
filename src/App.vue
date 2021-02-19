@@ -6,13 +6,13 @@
 export default {
   name: 'App',
   created() {
-    const userString = localStorage.getItem('user');
+    const userString = localStorage.getItem('user')
     if (userString) {
-      const userData = JSON.parse(userString);
-      this.$store.commit('SET_USER_DATA', userData);
+      const userData = JSON.parse(userString)
+      this.$store.commit('SET_USER_DATA', userData)
     } else {
-      this.$router.push('/login');
+      this.$router.push('/login')
     }
   },
-};
+}
 </script>

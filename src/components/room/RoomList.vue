@@ -53,16 +53,16 @@
 </template>
 
 <script>
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import RoomService from '@/services/RoomService';
-import moment from 'moment';
-import { mapGetters } from 'vuex';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import RoomService from '@/services/RoomService'
+import moment from 'moment'
+import { mapGetters } from 'vuex'
 
 export default {
   data() {
     return {
       rooms: null,
-    };
+    }
   },
   components: {
     FontAwesomeIcon,
@@ -73,17 +73,17 @@ export default {
   methods: {
     formatTime(date) {
       if (moment(date) >= moment().subtract(1, 'days')) {
-        return moment(date).format('LT');
+        return moment(date).format('LT')
       }
       if (moment(date) >= moment().subtract(7, 'days')) {
-        return moment(date).format('ddd');
+        return moment(date).format('ddd')
       }
-      return moment(date).format('L');
+      return moment(date).format('L')
     },
   },
   async created() {
-    const response = await RoomService.getRooms();
-    const rooms = [];
+    const response = await RoomService.getRooms()
+    const rooms = []
     response.data.forEach((room) => {
       rooms.push({
         id: room.id,
@@ -92,17 +92,17 @@ export default {
         lastMessageSentAt: room.lastMessageSentAt,
         lastMessageContent: room.lastMessageContent,
         status: room.lastMessageContent,
-      });
-    });
-    this.rooms = rooms;
+      })
+    })
+    this.rooms = rooms
   },
   mounted() {
     this.getSocket.on('NewMessage', (message) => {
-      const room = this.rooms.find((item) => message.roomId === item.id);
-      room.lastMessageSentAt = message.createdAt;
-      room.lastMessageContent = message.content;
-      room.status = message.content;
-    });
+      const room = this.rooms.find((item) => message.roomId === item.id)
+      room.lastMessageSentAt = message.createdAt
+      room.lastMessageContent = message.content
+      room.status = message.content
+    })
   },
-};
+}
 </script>

@@ -74,9 +74,9 @@
 </template>
 
 <script>
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import moment from 'moment';
-import { mapGetters } from 'vuex';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import moment from 'moment'
+import { mapGetters } from 'vuex'
 
 export default {
   props: ['members', 'messages'],
@@ -86,44 +86,44 @@ export default {
   computed: {
     ...mapGetters(['getSocket']),
     getmembers() {
-      const members = {};
+      const members = {}
       this.members.forEach((member) => {
         members[member.id] = {
           avatar: member.avatar,
           username: member.username,
-        };
-      });
-      return members;
+        }
+      })
+      return members
     },
     getmembersLength() {
-      return this.members.length;
+      return this.members.length
     },
   },
   data() {
     return {
       user: this.$store.state.user,
-    };
+    }
   },
   methods: {
     formatTime(date) {
-      return moment(date).format('LT');
+      return moment(date).format('LT')
     },
     scrollMessages() {
-      const container = this.$refs.messages;
+      const container = this.$refs.messages
       if (container) {
-        container.scrollTop = container.scrollHeight;
+        container.scrollTop = container.scrollHeight
       }
     },
   },
   mounted() {
-    this.scrollMessages();
+    this.scrollMessages()
 
     this.getSocket.on('connect', () => {
-      this.getSocket.emit('identify', this.user.token);
-    });
+      this.getSocket.emit('identify', this.user.token)
+    })
   },
   updated() {
-    this.scrollMessages();
+    this.scrollMessages()
   },
-};
+}
 </script>

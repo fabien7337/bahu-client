@@ -12,6 +12,9 @@ module.exports = {
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
     "max-len": ["error", { code: 500 }],
     'global-require': 'off',
-    'import/no-dynamic-require': 'off'
+    'import/no-dynamic-require': 'off',
+    semi: ['error', 'never'],
+    'no-use-before-define': ['error', { variables: false }],
+    'no-underscore-dangle': ['error', { allow: ['_id'] }],
   }
 };

@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import Navigation from '@/components/layout/Navigation.vue';
-import RoomList from '@/components/room/RoomList.vue';
-import Room from '@/components/room/Room.vue';
+import Navigation from '@/components/layout/Navigation.vue'
+import RoomList from '@/components/room/RoomList.vue'
+import Room from '@/components/room/Room.vue'
 
 export default {
   props: ['id'],
@@ -20,5 +20,5 @@ export default {
     RoomList,
     Room,
   },
-};
+}
 </script>

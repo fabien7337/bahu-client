@@ -50,16 +50,16 @@ export default {
     return {
       email: '',
       password: '',
-    };
+    }
   },
   methods: {
     async login() {
       await this.$store.dispatch('login', {
         email: this.email,
         password: this.password,
-      });
-      this.$router.push('/');
+      })
+      this.$router.push('/')
     },
   },
-};
+}
 </script>

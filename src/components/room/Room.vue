@@ -82,11 +82,11 @@
 </template>
 
 <script>
-import ChatInput from '@/components/chat/ChatInput.vue';
-import MessageList from '@/components/chat/MessageList.vue';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import RoomService from '@/services/RoomService';
-import { mapGetters } from 'vuex';
+import ChatInput from '@/components/chat/ChatInput.vue'
+import MessageList from '@/components/chat/MessageList.vue'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import RoomService from '@/services/RoomService'
+import { mapGetters } from 'vuex'
 
 export default {
   props: ['roomId'],
@@ -104,40 +104,40 @@ export default {
       members: [],
       room: null,
       roomStatus: null,
-    };
+    }
   },
   async created() {
-    const res1 = await RoomService.getRoom(this.roomId);
-    this.room = res1.data;
-    this.roomStatus = `${this.room.members.length} members`;
-    this.members = this.room.members;
+    const res1 = await RoomService.getRoom(this.roomId)
+    this.room = res1.data
+    this.roomStatus = `${this.room.members.length} members`
+    this.members = this.room.members
 
-    const res2 = await RoomService.getMessages(this.roomId);
-    this.messages = res2.data.reverse();
+    const res2 = await RoomService.getMessages(this.roomId)
+    this.messages = res2.data.reverse()
 
     this.getSocket.on('NewMessage', (message) => {
       if (message.roomId === this.roomId) {
         if (message.kind === 'text') {
-          this.messages = [...this.messages, message];
+          this.messages = [...this.messages, message]
         }
         if (message.kind === 'files') {
-          const message2 = message;
-          message2.content = 'TODO: DISPLAY FILES';
-          this.messages = [...this.messages, message2];
+          const message2 = message
+          message2.content = 'TODO: DISPLAY FILES'
+          this.messages = [...this.messages, message2]
         }
       }
-    });
+    })
 
     this.getSocket.on('receivedUserTyping', (data) => {
-      const usernames = data.usernames.filter((username) => username !== this.getCurrentUser.username);
+      const usernames = data.usernames.filter((username) => username !== this.getCurrentUser.username)
       if (usernames.length === 1) {
-        this.roomStatus = `${usernames[0]} is typing<span class="typing-dots"><span>.</span><span>.</span><span>.</span></span>`;
+        this.roomStatus = `${usernames[0]} is typing<span class="typing-dots"><span>.</span><span>.</span><span>.</span></span>`
       } else if (usernames.length >= 2) {
-        this.roomStatus = `${usernames.slice(0, usernames.length - 1).join(', ')} and ${usernames.slice(-1)} are typing<span class="typing-dots"><span>.</span><span>.</span><span>.</span></span>`;
+        this.roomStatus = `${usernames.slice(0, usernames.length - 1).join(', ')} and ${usernames.slice(-1)} are typing<span class="typing-dots"><span>.</span><span>.</span><span>.</span></span>`
       } else {
-        this.roomStatus = `${this.room.members.length} members`;
+        this.roomStatus = `${this.room.members.length} members`
       }
-    });
+    })
   },
-};
+}
 </script>
