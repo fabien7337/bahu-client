@@ -1,87 +1,54 @@
 <template>
-  <div class="chat-content px-lg-8" ref="messages">
-    <div class="container-xxl py-3" v-if="messages">
-      <div v-for="(message, index) in messages" :key="index">
-        <!-- Message -->
-        <div class="message mt-2" v-if="user.id !== message.userId">
-          <a class="avatar avatar-sm mr-4 mr-lg-5" v-if="getmembersLength > 2">
-            <img class="avatar-img" :src="getmembers[message.userId]['avatar']" alt="">
-          </a>
-          <!-- Message: body -->
-          <div class="message-body">
-            <!-- Message: row -->
-            <div class="message-row">
-              <div class="d-flex align-items-center">
-                <!-- Message: content -->
-                <div class="message-content bg-light">
-                  <h6 class="mb-2" v-if="getmembersLength > 2">{{ getmembers[message.userId]['username'] }}</h6>
-                  <div v-if="message.kind === 'text'">{{ message.content }}</div>
-                  <div v-if="message.kind === 'files'">
-                    <div class="form-row py-3">
-                      <div v-for="(file, index) in message.files" :key="index" class="col">
-                        <img class="img-fluid rounded" :src="file.url" data-action="zoom" alt="{{ file.name }}" style="max-height: 400px;">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="mt-1">
-                    <small class="opacity-65">{{ formatTime(message.createdAt) }}</small>
-                  </div>
-                </div>
-                <!-- Message: content -->
-              </div>
-            </div>
-            <!-- Message: row -->
-          </div>
-          <!-- Message: Body -->
-        </div>
-        <!-- Message -->
+  <div class="room-content hide-scrollbar bg-blue p-3 ps-4 pe-4" ref="messages">
+    <div v-for="(message, index) in messages" :key="index">
 
-        <div class="message message-right mt-2" v-else>
-          <!-- Message: body -->
-          <div class="message-body">
-            <!-- Message: row -->
-            <div class="message-row">
-              <div class="d-flex align-items-center justify-content-end">
-                <!-- Message: content -->
-                <div class="message-content bg-primary text-white">
-                  <div v-if="message.kind === 'text'">{{ message.content }}</div>
-                  <div v-if="message.kind === 'files'">
-                    <div class="form-row py-3">
-                      <div v-for="(file, index) in message.files" :key="index" class="col">
-                        <img class="img-fluid rounded" :src="file.url" data-action="zoom" alt="{{ file.name }}" style="max-height: 400px;">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="mt-1">
-                    <small class="opacity-65">{{ formatTime(message.createdAt) }}</small>
-                    <font-awesome-icon :icon="['fal', 'check']" class="ml-3" v-if="message.createdAt"/>
+      <!-- Message -->
+      <div class="message mb-3 context-menu" data-type="message" data-id="1" v-if="user.id !== message.userId">
+        <div class="row">
+          <div class="col-auto" v-if="getmembersLength > 2">
+            <!-- Avatar -->
+            <a class="avatar avatar-sm" href="#TODO">
+              <img :src="getmembers[message.userId]['avatar']" alt="..." class="avatar-img rounded-circle" width="40">
+            </a>
+          </div>
+          <div class="col g-0 pe-3">
+            <!-- Body -->
+            <div class="message-body clearfix">
+              <h5 class="message-title" v-if="getmembersLength > 2">{{ getmembers[message.userId]['username']  }}</h5>
+              <!-- Text -->
+              <div class="message-text" v-if="message.kind === 'text'">{{ message.content }}</div>
+              <div v-if="message.kind === 'files'">
+                <div class="form-row py-3">
+                  <div v-for="(file, index) in message.files" :key="index" class="col">
+                    <img class="img-fluid rounded" :src="file.url" data-action="zoom" alt="{{ file.name }}" style="max-height: 400px;">
                   </div>
                 </div>
-                <!-- Message: content -->
               </div>
+              <time class="message-time float-end">{{ formatTime(message.createdAt) }}</time>
             </div>
-            <!-- Message: row -->
           </div>
-          <!-- Message: body -->
         </div>
       </div>
-      <!-- Message -->
-    </div>
 
-    <!-- Scroll to end -->
-    <div class="end-of-chat"></div>
+      <!-- Message -->
+      <div class="message message-right mb-3 d-flex align-items-center justify-content-end" v-else>
+        <div class="message-body clearfix">
+          <div class="message-text">{{ message.content }}</div>
+          <div class="message-sent float-end"></div>
+          <time class="message-time float-end pe-1">{{ formatTime(message.createdAt)  }}</time>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import moment from 'moment'
 import { mapGetters } from 'vuex'
 
 export default {
   props: ['members', 'messages'],
   components: {
-    FontAwesomeIcon,
   },
   computed: {
     ...mapGetters(['getSocket']),

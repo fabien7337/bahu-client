@@ -1,10 +1,14 @@
 <template>
-  <Navigation />
-  <div class="sidebar d-block">
-    <RoomList />
-  </div>
-  <div class="main main-visible d-none d-sm-block">
-    TODO: Select a room?
+  <div class="row g-0">
+    <div class="room-list col-lg-3">
+      <RoomList />
+      <Navigation />
+    </div>
+
+    <!-- Room -->
+    <div class="room col-lg-9 border-start">
+      TODO: Select a room?
+    </div>
   </div>
 </template>
 

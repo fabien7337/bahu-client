@@ -1,46 +1,43 @@
 <template>
   <div class="container d-flex flex-column">
     <div class="row align-items-center justify-content-center no-gutters min-vh-100">
-      <div class="col-12 col-md-5 col-lg-4 py-8 py-md-11">
-        <!-- Heading -->
-        <h1 class="font-bold text-center">Sign in</h1>
-
-        <!-- Text -->
-        <p class="text-center mb-6">Welcome to the official Chat web-client.</p>
+      <div class="col-12 col-md-5 col-xl-4 my-5">
+        <h1 class="display-4 text-center mb-3">Log in</h1>
+        <p class="text-muted text-center mb-5">Manage your account, check notifications, chat with friends, and more.</p>
 
         <!-- Form -->
-        <form class="mb-6" @submit.prevent="login">
+        <form @submit.prevent="login">
           <!-- Email -->
           <div class="form-group">
-            <label for="email" class="sr-only">Email Address</label>
-            <input v-model="email" type="email" class="form-control form-control-lg" id="email" placeholder="Enter your email" value>
+            <label class="form-label" for="email">Email Address</label>
+            <input v-model="email" type="email" class="form-control" id="email" placeholder="Enter your email" value>
           </div>
 
           <!-- Password -->
           <div class="form-group">
-            <label for="password" class="sr-only">Password</label>
-            <input v-model="password" type="password" class="form-control form-control-lg" id="password" placeholder="Enter your password" value>
-          </div>
-
-          <div class="form-group d-flex justify-content-between">
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" checked="" id="checkbox-remember">
-              <label class="custom-control-label" for="checkbox-remember">Remember me</label>
+            <div class="row">
+              <div class="col">
+                <label class="form-label" for="password">Password</label>
+              </div>
+              <div class="col-auto">
+                <a href="#TODO" class="form-text small text-muted">Forgot password?</a>
+              </div>
             </div>
-            <a href="#TODO">Reset password</a>
+            <input v-model="password" type="password" class="form-control" id="password" placeholder="Enter your password" value>
           </div>
 
           <!-- Submit -->
-          <button class="btn btn-lg btn-block btn-primary" type="submit">Sign in</button>
+          <button class="btn btn-lg w-100 btn-primary mb-3" type="submit">Log in</button>
         </form>
 
         <!-- Text -->
         <p class="text-center">
-          Don't have an account yet <a href="#TODO">Sign up</a>.
+          <small class="text-muted text-center">
+            Don't have an account yet? <a href="#TODO">Sign up</a>.
+          </small>
         </p>
-
       </div>
-    </div> <!-- / .row -->
+    </div>
   </div>
 </template>
 

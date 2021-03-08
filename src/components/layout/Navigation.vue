@@ -1,65 +1,28 @@
 <template>
-  <div class="navigation navbar navbar-light justify-content-center py-xl-7">
-    <!-- Brand -->
-    <router-link :to="{ name: 'Home' }" class="none d-xl-block mb-6">
-      <img src="/logo.png" height="46" />
-    </router-link>
-
-    <!-- Menu -->
-    <ul class="nav navbar-nav flex-row flex-xl-column flex-grow-1 justify-content-between justify-content-xl-center py-3 py-lg-0" role="tablist">
-
-      <!-- Invisible item to center nav vertically -->
-      <li class="nav-item d-none d-xl-block invisible flex-xl-grow-1">
-        <a class="nav-link position-relative p-0 py-xl-3" href="#TODO" title="">
-          <i class="icon-lg fe-x"></i>
+  <!-- Nav Bottom -->
+  <div class="room-list-footer">
+    <div class="border-top d-flex justify-content-evenly" style="height: 80px;">
+      <div class="align-self-center">
+        <a href="#TODO" class="icon-lg">
+          <font-awesome-icon :icon="['fas', 'layer-group']" />
         </a>
-      </li>
-
-      <!-- Create Room -->
-      <li class="nav-item">
-        <a class="nav-link position-relative p-0 py-xl-3" data-toggle="tab" href="#TODO" title="Create room" role="tab">
-          <font-awesome-icon class="icon-lg" :icon="['fal', 'edit']" />
-        </a>
-      </li>
-
-      <!-- Contacts -->
-      <li class="nav-item mt-xl-9">
-        <a class="nav-link position-relative p-0 py-xl-3" data-toggle="tab" href="#TODO" title="Contacts" role="tab">
-          <font-awesome-icon class="icon-lg" :icon="['fal', 'user-friends']" />
-        </a>
-      </li>
-
-      <!-- Rooms -->
-      <li class="nav-item mt-xl-9">
-        <router-link :to="{ name: 'Home' }" class="nav-link position-relative p-0 py-xl-3 active" data-toggle="tab" title="Rooms" role="tab">
-          <font-awesome-icon class="icon-lg" :icon="['fal', 'comments']" />
-          <div class="badge badge-dot badge-primary badge-bottom-center"></div>
+      </div>
+      <div class="align-self-center">
+        <router-link :to="{ name: 'Home'  }" class="icon-lg active">
+          <font-awesome-icon :icon="['fas', 'comments']" />
         </router-link>
-      </li>
-
-      <!-- Profile -->
-      <li class="nav-item mt-xl-9">
-        <a class="nav-link position-relative p-0 py-xl-3" data-toggle="tab" href="#TODO" title="Profile" role="tab">
-          <font-awesome-icon class="icon-lg" :icon="['fal', 'user']" />
+      </div>
+      <div class="align-self-center">
+        <a href="#TODO" class="icon-lg">
+          <font-awesome-icon :icon="['fas', 'user']" />
         </a>
-      </li>
-
-      <!-- Apps -->
-      <li class="nav-item mt-xl-9 d-none d-xl-block flex-xl-grow-1">
-        <a class="nav-link position-relative p-0 py-xl-3" data-toggle="tab" href="#TODO" title="Apps" role="tab">
-          <font-awesome-icon class="icon-lg" :icon="['fal', 'layer-group']" />
+      </div>
+      <div class="align-self-center">
+        <a href="#TODO" class="icon-lg">
+          <font-awesome-icon :icon="['fas', 'cog']" />
         </a>
-      </li>
-
-      <!-- Settings -->
-      <li class="nav-item mt-xl-9">
-        <a class="nav-link position-relative p-0 py-xl-3" href="#TODO" title="Settings">
-          <font-awesome-icon class="icon-lg" :icon="['fal', 'cog']" />
-        </a>
-      </li>
-
-    </ul>
-    <!-- Menu -->
+      </div>
+    </div>
   </div>
 </template>
 

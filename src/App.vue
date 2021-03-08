@@ -16,3 +16,6 @@ export default {
   },
 }
 </script>
+<style lang="scss">
+@import '@/assets/styles/dashkit/theme-dark.scss';
+</style>

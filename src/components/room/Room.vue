@@ -1,84 +1,44 @@
 <template>
-  <div class="chat dropzone-form-js">
-    <div class="chat-body">
-      <!-- Chat: Header -->
-      <div class="chat-header border-bottom py-4 py-lg-6 px-lg-8">
-        <div class="container-xxl">
-          <div class="row align-items-center">
-            <!-- Close chat(mobile) -->
-            <div class="col-3 d-xl-none">
-              <ul class="list-inline mb-0">
-                <li class="list-inline-item">
-                  <router-link :to="{ name: 'Home' }" class="text-muted px-0" data-chat="open">
-                    <font-awesome-icon class="icon-md" :icon="['fal', 'chevron-left']" />
-                  </router-link>
-                </li>
-              </ul>
-            </div>
-
-            <!-- Chat photo -->
-            <div class="col-6 col-xl-6">
-              <div class="media text-center text-xl-left" v-if="room">
-                <div class="avatar avatar-sm avatar-online d-none d-lg-inline-block mr-5">
-                  <img :src="room.avatar" class="avatar-img" alt="">
-                </div>
-                <div class="media-body align-self-center text-truncate">
-                  <h6 class="text-trunctate mb-n1">{{ room.name }}</h6>
-                  <span class="badge badge-dot badge-success d-inline-block d-xl-none mr-1"></span>
-                  <small class="text-muted" v-html="roomStatus"></small>
-                </div>
-              </div>
-            </div>
-
-            <!-- Chat toolbar -->
-            <div class="col-3 col-xl-6 text-right">
-              <ul class="nav justify-content-end">
-                <li class="nav-item list-inline-item d-none d-xl-block mr-3">
-                  <a class="nav-link text-muted px-3" data-toggle="collapse" data-target="#chat-2-search" href="#" title="Search this chat">
-                    <font-awesome-icon class="icon-md" :icon="['far', 'search']" />
-                  </a>
-                </li>
-                <li class="nav-item list-inline-item d-none d-xl-block mr-0">
-                  <a class="nav-link text-muted px-3" href="#" data-chat-sidebar-toggle="#chat-2-info" title="Details">
-                    <font-awesome-icon class="icon-md" :icon="['far', 'ellipsis-v']" />
-                  </a>
-                </li>
-
-                <!-- Mobile nav -->
-                <li class="nav-item list-inline-item d-block d-xl-none">
-                  <div class="dropdown">
-                    <a class="nav-link text-muted px-0" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <font-awesome-icon class="icon-md" :icon="['far', 'ellipsis-v']" />
-                    </a>
-                    <div class="dropdown-menu">
-                      <a class="dropdown-item d-flex align-items-center" data-toggle="collapse" data-target="#chat-2-search" href="#">
-                        Search <span class="ml-auto pl-5 fe-search"></span>
-                      </a>
-                      <a class="dropdown-item d-flex align-items-center" href="#" data-chat-sidebar-toggle="#chat-2-info">
-                        Chat Info <span class="ml-auto pl-5 fe-more-horizontal"></span>
-                      </a>
-                    </div>
-                  </div>
-                </li>
-                <!-- Mobile nav -->
-              </ul>
-            </div>
+  <!-- Nav Top -->
+  <div class="room-header">
+    <div class="row align-items-center ps-4 border-bottom" style="height: 66px;">
+      <div class="col-auto">
+        <!-- Avatar -->
+        <a href="#" class="avatar">
+          <img :src="room.avatar" alt="..." class="avatar-img rounded-circle" width="48">
+        </a>
+      </div>
+      <div class="col g-0">
+        <!-- Title -->
+        <h4 class="mb-1 bold">{{ room.name }}</h4>
+        <!-- Time -->
+        <p class="card-text small text-muted" v-html="roomStatus"></p>
+      </div>
+      <div class="col-auto me-4">
+        <!-- Dropdown -->
+        <div class="dropdown">
+          <a class="dropdown-ellipses dropdown-toggle icon-lg" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <font-awesome-icon :icon="['fal', 'ellipsis-h']"/>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <a href="#" class="dropdown-item">
+              <font-awesome-icon :icon="['fal', 'edit']"/>Edit
+            </a>
+            <a href="#" class="dropdown-item">
+              <font-awesome-icon :icon="['fal', 'archive']"/>Archive
+            </a>
+            <a href="#" class="dropdown-item ">
+              <font-awesome-icon :icon="['fal', 'trash-alt']"/>Delete chat
+            </a>
           </div>
         </div>
       </div>
-      <!-- Chat: Header -->
-
-      <MessageList :members="members" :messages="messages" />
-
-      <div class="chat-files hide-scrollbar px-lg-8">
-        <div class="container-xxl">
-          <div class="dropzone-previews-js form-row py-4"></div>
-        </div>
-      </div>
-
-      <ChatInput :roomId="roomId" />
     </div>
   </div>
+
+  <MessageList :members="members" :messages="messages" />
+
+  <ChatInput :roomId="roomId" />
 </template>
 
 <script>

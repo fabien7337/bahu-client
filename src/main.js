@@ -4,19 +4,23 @@ import BugsnagPluginVue from '@bugsnag/plugin-vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faArrowUp,
-  faSearch,
-  faEllipsisV,
+  faCog,
+  faComments,
+  faLayerGroup,
+  faUser,
+} from '@fortawesome/free-solid-svg-icons'
+import {
 } from '@fortawesome/pro-regular-svg-icons'
 import {
+  faArchive,
   faCheck,
   faClock,
   faEdit,
-  faComments,
+  faEllipsisH,
   faUserFriends,
-  faUser,
-  faLayerGroup,
-  faCog,
   faPaperclip,
+  faSearch,
+  faSmile,
   faTimes,
   faFile,
   faChevronLeft,
@@ -51,7 +55,7 @@ axios.interceptors.response.use(
   },
 )
 
-library.add(faArrowUp, faSearch, faEllipsisV, faCheck, faClock, faEdit, faComments, faUserFriends, faUser, faLayerGroup, faCog, faPaperclip, faTimes, faFile, faChevronLeft)
+library.add(faArchive, faArrowUp, faEllipsisH, faSearch, faCheck, faClock, faEdit, faComments, faUserFriends, faUser, faLayerGroup, faCog, faPaperclip, faSmile, faTimes, faFile, faChevronLeft)
 
 const bugsnagVue = Bugsnag.getPlugin('vue')
 createApp(App)

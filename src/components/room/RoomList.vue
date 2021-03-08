@@ -1,59 +1,41 @@
 <template>
-  <div class="tab-content h-100" role="tablist">
-    <div class="tab-pane fade h-100 show active" id="tab-content-dialogs" role="tabpanel">
-      <div class="d-flex flex-column h-100">
-        <div class="hide-scrollbar">
-          <div class="container-fluid py-6">
-            <!-- Title -->
-            <router-link :to="{ name: 'Home' }">
-              <h2 class="font-bold mb-6">Bahu</h2>
-            </router-link>
-            <!-- Title -->
-            <!-- Search -->
-            <form class="mb-6">
-              <div class="input-group">
-                <input type="text" class="form-control form-control-lg" placeholder="Search for messages or users..." aria-label="Search for messages or users...">
-                <div class="input-group-append">
-                  <button class="btn btn-lg btn-ico btn-secondary btn-minimal" type="submit">
-                    <font-awesome-icon class="icon-md" :icon="['far', 'search']" />
-                  </button>
-                </div>
-              </div>
-            </form>
-            <!-- Search -->
-            <!-- Chats -->
-            <nav class="nav d-block list-discussions-js mb-n6" v-for="(room, index) in rooms" :key="index">
-              <!-- Chat link -->
-              <router-link :to="{ name: 'Room', params: { id: room.id } }" class="text-reset nav-link p-0 mb-6">
-                <div class="card card-active-listener">
-                  <div class="card-body">
-                    <div class="media">
-                      <div class="avatar mr-5">
-                        <img class="avatar-img" :src="room.avatar" alt="Bootstrap Themes">
-                      </div>
-                      <div class="media-body overflow-hidden">
-                        <div class="d-flex align-items-center mb-1">
-                          <h6 class="text-truncate mb-0 mr-auto">{{ room.name }}</h6>
-                          <p class="small text-muted text-nowrap ml-4">{{ formatTime(room.lastMessageSentAt) }}</p>
-                        </div>
-                        <div class="text-truncate">{{ room.status }}</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </router-link>
-              <!-- Chat link -->
-            </nav>
-            <!-- Chats -->
+  <!-- Nav Top -->
+  <div class="room-list-header" >
+    <div class="p-3 d-flex justify-content-between border-bottom" style="height: 66px;">
+      <form class="search">
+        <div class="input-group">
+          <span class="input-group-text fe fe-search"></span>
+          <input type="search" class="form-control" placeholder="Search" />
+        </div>
+      </form>
+      <div class="icon-new-message">
+      </div>
+    </div>
+  </div>
+  <div class="room-list-content hide-scrollbar">
+    <div class="list-group list-group-flush" v-for="(room, index) in rooms" :key="index">
+      <!-- Chat -->
+      <router-link :to="{ name: 'Room', params: { id: room.id } }" class="list-group-item p-3">
+        <div class="row align-items-center">
+          <div class="col-auto">
+            <a href="#TODO" class="avatar avatar-lg">
+              <img :src="room.avatar" alt="..." class="avatar-img rounded-circle" width="64">
+            </a>
+          </div>
+          <div class="col ms-n3">
+            <div class="d-flex align-items-center mb-1">
+              <h4 class="text-truncate mb-0 me-auto">{{ room.name }}</h4>
+              <p class="mb-0 small text-muted text-nowrap ml-4">{{ formatTime(room.lastMessageSentAt)  }}</p>
+            </div>
+            <p class="small text-muted mb-1">{{ room.status }}</p>
           </div>
         </div>
-      </div>
+      </router-link>
     </div>
   </div>
 </template>
 
 <script>
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import RoomService from '@/services/RoomService'
 import moment from 'moment'
 import { mapGetters } from 'vuex'
@@ -63,9 +45,6 @@ export default {
     return {
       rooms: null,
     }
-  },
-  components: {
-    FontAwesomeIcon,
   },
   computed: {
     ...mapGetters(['getSocket']),
