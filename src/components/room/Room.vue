@@ -18,17 +18,17 @@
         <!-- Dropdown -->
         <div class="dropdown">
           <a class="dropdown-ellipses dropdown-toggle icon-lg" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <font-awesome-icon :icon="['fal', 'ellipsis-h']"/>
+            <i class="fal fa-ellipsis-h"></i>
           </a>
           <div class="dropdown-menu dropdown-menu-right">
             <a href="#" class="dropdown-item">
-              <font-awesome-icon :icon="['fal', 'edit']"/>Edit
+              <i class="fal fa-edit"></i> Edit
             </a>
             <a href="#" class="dropdown-item">
-              <font-awesome-icon :icon="['fal', 'archive']"/>Archive
+              <i class="fal fa-archive"></i> Archive
             </a>
             <a href="#" class="dropdown-item ">
-              <font-awesome-icon :icon="['fal', 'trash-alt']"/>Delete chat
+              <i class="fal fa-trash-alt"></i> Delete chat
             </a>
           </div>
         </div>
@@ -44,7 +44,6 @@
 <script>
 import ChatInput from '@/components/chat/ChatInput.vue'
 import MessageList from '@/components/chat/MessageList.vue'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import RoomService from '@/services/RoomService'
 import { mapGetters } from 'vuex'
 
@@ -52,7 +51,6 @@ export default {
   props: ['roomId'],
   components: {
     ChatInput,
-    FontAwesomeIcon,
     MessageList,
   },
   computed: {

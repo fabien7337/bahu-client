@@ -1,30 +1,8 @@
 import axios from 'axios'
+// eslint-disable-next-line
+import 'bootstrap'
 import Bugsnag from '@bugsnag/js'
 import BugsnagPluginVue from '@bugsnag/plugin-vue'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import {
-  faArrowUp,
-  faCog,
-  faComments,
-  faLayerGroup,
-  faUser,
-} from '@fortawesome/free-solid-svg-icons'
-import {
-} from '@fortawesome/pro-regular-svg-icons'
-import {
-  faArchive,
-  faCheck,
-  faClock,
-  faEdit,
-  faEllipsisH,
-  faUserFriends,
-  faPaperclip,
-  faSearch,
-  faSmile,
-  faTimes,
-  faFile,
-  faChevronLeft,
-} from '@fortawesome/pro-light-svg-icons'
 import io from 'socket.io-client'
 import { createApp } from 'vue'
 import App from './App.vue'
@@ -54,8 +32,6 @@ axios.interceptors.response.use(
     }
   },
 )
-
-library.add(faArchive, faArrowUp, faEllipsisH, faSearch, faCheck, faClock, faEdit, faComments, faUserFriends, faUser, faLayerGroup, faCog, faPaperclip, faSmile, faTimes, faFile, faChevronLeft)
 
 const bugsnagVue = Bugsnag.getPlugin('vue')
 createApp(App)

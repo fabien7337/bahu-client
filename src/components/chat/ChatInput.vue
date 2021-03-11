@@ -5,7 +5,7 @@
       <div class="border-top row ps-4 pe-4 g-0" style="min-height: 80px; max-height: 300px;">
         <div class="col-auto align-self-center">
           <a href="#" class="icon-lg">
-            <font-awesome-icon :icon="['fal', 'paperclip']"/>
+            <i class="fal fa-paperclip"></i>
           </a>
         </div>
         <div class="col align-self-center ps-3 pe-4">
@@ -13,12 +13,12 @@
         </div>
         <div class="col-auto align-self-center pe-4">
           <a class="icon-lg" data-emoji-btn="">
-            <font-awesome-icon :icon="['fal', 'smile']"/>
+            <i class="fal fa-smile"></i>
           </a>
         </div>
         <div class="col-auto align-self-center">
           <button class="btn btn-primary rounded-circle">
-            <font-awesome-icon :icon="['fas', 'arrow-up']"/>
+            <i class="fas fa-arrow-up"></i>
           </button>
         </div>
       </div>
@@ -29,7 +29,6 @@
 <script>
 import autosize from 'autosize'
 import Dropzone from 'dropzone'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { ulid } from 'ulid'
 import { mapGetters } from 'vuex'
 
@@ -37,9 +36,6 @@ Dropzone.autoDiscover = false
 
 export default {
   props: ['roomId'],
-  components: {
-    FontAwesomeIcon,
-  },
   computed: {
     ...mapGetters(['getCurrentUser', 'getSocket']),
   },

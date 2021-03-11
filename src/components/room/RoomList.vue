@@ -4,7 +4,7 @@
     <div class="p-3 d-flex justify-content-between border-bottom" style="height: 66px;">
       <form class="search">
         <div class="input-group">
-          <span class="input-group-text fe fe-search"></span>
+          <span class="input-group-text fal fa-search"></span>
           <input type="search" class="form-control" placeholder="Search" />
         </div>
       </form>
@@ -16,7 +16,7 @@
     <div class="list-group list-group-flush" v-for="(room, index) in rooms" :key="index">
       <!-- Chat -->
       <router-link :to="{ name: 'Room', params: { id: room.id } }" class="list-group-item p-3">
-        <div class="row align-items-center">
+        <div class="row">
           <div class="col-auto">
             <a href="#TODO" class="avatar avatar-lg">
               <img :src="room.avatar" alt="..." class="avatar-img rounded-circle" width="64">
@@ -24,7 +24,7 @@
           </div>
           <div class="col ms-n3">
             <div class="d-flex align-items-center mb-1">
-              <h4 class="text-truncate mb-0 me-auto">{{ room.name }}</h4>
+              <h4 class="text-truncate mb-0 me-auto bold">{{ room.name }}</h4>
               <p class="mb-0 small text-muted text-nowrap ml-4">{{ formatTime(room.lastMessageSentAt)  }}</p>
             </div>
             <p class="small text-muted mb-1">{{ room.status }}</p>

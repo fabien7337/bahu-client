@@ -10,11 +10,7 @@
   "dependencies": {
     "@bugsnag/js": "^7.7.0",
     "@bugsnag/plugin-vue": "^7.7.0",
-    "@fortawesome/fontawesome-svg-core": "^1.2.34",
-    "@fortawesome/free-solid-svg-icons": "^5.15.2",
-    "@fortawesome/pro-light-svg-icons": "^5.15.2",
-    "@fortawesome/pro-regular-svg-icons": "^5.15.2",
-    "@fortawesome/vue-fontawesome": "^3.0.0-3",
+    "@popperjs/core": "^2.9.1",
     "autosize": "^4.0.2",
     "axios": "^0.21.1",
     "bootstrap": "^5.0.0-beta2",
