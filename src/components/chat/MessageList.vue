@@ -16,7 +16,7 @@
             <div class="message-body clearfix">
               <h5 class="message-title" v-if="getmembersLength > 2">{{ getmembers[message.userId]['username']  }}</h5>
               <!-- Text -->
-              <div class="message-text" v-if="message.kind === 'text'">{{ message.content }}</div>
+              <div class="message-text" v-if="message.kind === 'text'" v-html="formatMessageContent(message.content)"></div>
               <div v-if="message.kind === 'files'">
                 <div class="form-row py-3">
                   <div v-for="(file, index) in message.files" :key="index" class="col">
@@ -33,7 +33,7 @@
       <!-- Message -->
       <div class="message message-right mb-3 d-flex align-items-center justify-content-end" v-else>
         <div class="message-body clearfix">
-          <div class="message-text">{{ message.content }}</div>
+          <div class="message-text" v-html="formatMessageContent(message.content)"></div>
           <div class="message-sent float-end"></div>
           <time class="message-time float-end pe-1">{{ formatTime(message.createdAt)  }}</time>
         </div>
@@ -43,6 +43,7 @@
 </template>
 
 <script>
+import anchorme from 'anchorme'
 import moment from 'moment'
 import { mapGetters } from 'vuex'
 
@@ -72,6 +73,16 @@ export default {
     }
   },
   methods: {
+    formatMessageContent(messageContent) {
+      return anchorme({
+        input: messageContent,
+        options: {
+          attributes: {
+            target: '_blank',
+          },
+        },
+      })
+    },
     formatTime(date) {
       return moment(date).format('LT')
     },

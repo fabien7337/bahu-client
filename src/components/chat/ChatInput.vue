@@ -9,7 +9,7 @@
           </a>
         </div>
         <div class="col align-self-center ps-3 pe-4">
-          <textarea id="chat-input" type="text" class="form-control" placeholder="Message" data-autosize="true" data-emoji-input="" rows="1" style="max-height: 300px;" v-model.trim="message" v-on:keypress="triggerMessageSend"></textarea>
+          <textarea id="chat-input" class="form-control" placeholder="Message" data-autosize="true" data-emoji-input="" rows="1" style="max-height: 300px;" v-model.trim="message" v-on:keypress="triggerMessageSend"></textarea>
         </div>
         <div class="col-auto align-self-center pe-4">
           <a class="icon-lg" data-emoji-btn="">

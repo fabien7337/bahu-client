@@ -1,7 +1,7 @@
 <template>
   <!-- Nav Top -->
   <div class="room-header">
-    <div class="row align-items-center ps-4 border-bottom" style="height: 66px;">
+    <div class="row align-items-center ps-4 border-bottom" style="height: 66px;" v-if="room">
       <div class="col-auto">
         <!-- Avatar -->
         <a href="#" class="avatar">
@@ -76,7 +76,8 @@ export default {
     this.getSocket.on('NewMessage', (message) => {
       if (message.roomId === this.roomId) {
         if (message.kind === 'text') {
-          this.messages = [...this.messages, message]
+          const message2 = message
+          this.messages = [...this.messages, message2]
         }
         if (message.kind === 'files') {
           const message2 = message

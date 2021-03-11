@@ -70,10 +70,20 @@ a.icon-lg.active {
   max-width: 70%;
   padding: 10px 12px;
   display: inline-block;
+
+  a:hover {
+    text-decoration: underline;
+    color: #2ea6ff;
+  }
 }
 .message-right .message-body {
   background-color: #487195;
   border-radius: 12px 6px 6px 12px;
+
+  a {
+    color: white;
+    text-decoration: underline;
+  }
 }
 .message-title {
   font-size: 13px;
