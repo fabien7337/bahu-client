@@ -10,6 +10,7 @@
   "dependencies": {
     "@bugsnag/js": "^7.7.0",
     "@bugsnag/plugin-vue": "^7.7.0",
+    "@joeattardi/emoji-button": "^4.6.0",
     "@popperjs/core": "^2.9.1",
     "anchorme": "^2.1.2",
     "autosize": "^4.0.2",

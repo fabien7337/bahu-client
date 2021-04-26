@@ -6,9 +6,7 @@
     </div>
 
     <!-- Room -->
-    <div class="room col-lg-9 border-start">
-      <Room :roomId="id" :key="id" />
-    </div>
+    <Room :roomId="id" :key="id" />
   </div>
 </template>
 

@@ -1,44 +1,50 @@
 <template>
-  <!-- Nav Top -->
-  <div class="room-header">
-    <div class="row align-items-center ps-4 border-bottom" style="height: 66px;" v-if="room">
-      <div class="col-auto">
-        <!-- Avatar -->
-        <a href="#" class="avatar">
-          <img :src="room.avatar" alt="..." class="avatar-img rounded-circle" width="48">
-        </a>
-      </div>
-      <div class="col g-0">
-        <!-- Title -->
-        <h4 class="mb-1 bold">{{ room.name }}</h4>
-        <!-- Time -->
-        <p class="card-text small text-muted" v-html="roomStatus"></p>
-      </div>
-      <div class="col-auto me-4">
-        <!-- Dropdown -->
-        <div class="dropdown">
-          <a class="dropdown-ellipses dropdown-toggle icon-lg" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fal fa-ellipsis-h"></i>
+  <div class="room col-lg-9 border-start dropzone-form-js">
+    <!-- Nav Top -->
+    <div class="room-header">
+      <div class="row align-items-center ps-4 border-bottom" style="height: 66px;" v-if="room">
+        <div class="col-auto">
+          <!-- Avatar -->
+          <a href="#" class="avatar">
+            <img :src="room.avatar" alt="..." class="avatar-img rounded-circle" width="48">
           </a>
-          <div class="dropdown-menu dropdown-menu-right">
-            <a href="#" class="dropdown-item">
-              <i class="fal fa-edit"></i> Edit
+        </div>
+        <div class="col g-0">
+          <!-- Title -->
+          <h4 class="mb-1 bold">{{ room.name }}</h4>
+          <!-- Time -->
+          <p class="card-text small text-muted" v-html="roomStatus"></p>
+        </div>
+        <div class="col-auto me-4">
+          <!-- Dropdown -->
+          <div class="dropdown">
+            <a class="dropdown-ellipses dropdown-toggle icon-lg" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fal fa-ellipsis-h"></i>
             </a>
-            <a href="#" class="dropdown-item">
-              <i class="fal fa-archive"></i> Archive
-            </a>
-            <a href="#" class="dropdown-item ">
-              <i class="fal fa-trash-alt"></i> Delete chat
-            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a href="#" class="dropdown-item">
+                <i class="fal fa-edit"></i> Edit
+              </a>
+              <a href="#" class="dropdown-item">
+                <i class="fal fa-archive"></i> Archive
+              </a>
+              <a href="#" class="dropdown-item ">
+                <i class="fal fa-trash-alt"></i> Delete chat
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+    <MessageList :members="members" :messages="messages" />
+
+    <div class="room-files">
+      <div class="dropzone-previews-js"></div>
+    </div>
+
+    <ChatInput :roomId="roomId" />
   </div>
-
-  <MessageList :members="members" :messages="messages" />
-
-  <ChatInput :roomId="roomId" />
 </template>
 
 <script>
